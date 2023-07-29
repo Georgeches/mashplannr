@@ -58,7 +58,7 @@ const RegisterForm = () => {
               </div>
               <div className="account-info">
                 <div className="login-back">
-                  <a href="signup.html">
+                  <a href="/">
                     <i className="fa-solid fa-arrow-left-long"></i> Back
                   </a>
                 </div>

@@ -50,31 +50,21 @@ function Header({ handleLogout }) {
                 </li>
 
                 <li className="has-submenu">
-                  <a href="/admin">
+                  <a href="/login">
                     Admin <i className="fas fa-chevron-down"></i>
                   </a>
                   <ul className="submenu">{/* ... Submenu Content ... */}</ul>
                 </li>
-                <li className="searchbar">
-                  <a href="javascript:void(0);">
-                    <i className="feather-search"></i>
-                  </a>
-                  <div className="togglesearch">
-                    <form action="https://doccure.dreamguystech.com/html/template/search.html">
-                      <div className="input-group">
-                        <input type="text" className="form-control" />
-                        <button type="submit" className="btn">
-                          Search
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </li>
+
                 <li className="login-link">
                   <a href="/login">Login / Signup</a>
                 </li>
                 <li className="register-btn">
-                  <a href="/register" className="btn reg-btn">
+                  <a
+                    href="/login
+                  "
+                    className="btn reg-btn"
+                  >
                     <i className="feather-user"></i>Register
                   </a>
                 </li>

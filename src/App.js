@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import './App.css';
 
 //components
@@ -14,6 +14,8 @@ function App() {
   const [user, setUser] = useState(null);
   const [merchants, setMerchants] = useState([])
   const [orders, setOrders] = useState([])
+  const [currentMerchant, setCurrentMerchant] = useState({})
+  console.log(currentMerchant);
 
   useEffect(() => {
     // auto-login
@@ -41,24 +43,30 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Header onLogout={handleLogout} />
-      <Home />
-      {/* <Merchant /> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login onLogin={setUser} />} />
-        <Route path="/register" element={<RegisterForm />} />
-        {/* <Route path="/merchant" element={<Merchant />} /> */}
-        <Route path="/merchant/login" element={<LoginForm />} />
-        <Route path="/merchants" element={
-            <>
-              <MerchantPage merchants={merchants}/>
-            </>
-          }>
-          </Route>
-      </Routes>
-    </div>
+      <BrowserRouter>
+        <Header onLogout={handleLogout} />
+        <Routes>
+            <Route path="/" element={
+              <>
+              <Home merchants={merchants} orders={orders}/>
+              </>
+            }>
+            </Route>
+
+            <Route path="/login" element={<Login onLogin={setUser} />} />
+
+            <Route path="/register" element={<RegisterForm />} />
+
+            <Route path="/merchant/login" element={<LoginForm />} />
+
+            <Route path="/merchants" element={
+                <>
+                  <MerchantPage setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route>            
+        </Routes>
+      </BrowserRouter>
   );
 }
 

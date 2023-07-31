@@ -1,23 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import LoginForm from "./components/auth/LoginForm";
+import RegisterForm from "./components/auth/RegisterForm";
+import Header from "./components/Header";
+import Login from "./components/login";
+// import Merchant from "./components/Merchant";
 
 function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+
+  function handleLogout() {
+    setUser(null);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header onLogout={handleLogout} />
+      <Home />
+      {/* <Merchant /> */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login onLogin={setUser} />} />
+        <Route path="/register" element={<RegisterForm />} />
+        {/* <Route path="/merchant" element={<Merchant />} /> */}
+        <Route path="/merchant/login" element={<LoginForm />} />
+      </Routes>
     </div>
   );
 }

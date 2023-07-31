@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const LoginForm = ({ onLogin }) => {
-  const [name, setName] = useState("");
+  const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ const LoginForm = ({ onLogin }) => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ name, password }),
+      body: JSON.stringify({ id, password }),
     })
       .then((response) => {
         if (response.ok) {
@@ -48,13 +48,13 @@ const LoginForm = ({ onLogin }) => {
             <input
               type="name"
               className="form-control floating"
-              id="name"
-              name="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              id=""
+              name="id"
+              value={id}
+              onChange={(e) => setId(e.target.value)}
             />
             <label className="focus-label" htmlFor="username">
-              Username
+              Id Number
             </label>
           </div>
           <div className="mb-3 form-focus">

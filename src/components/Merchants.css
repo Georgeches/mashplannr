@@ -1,0 +1,37 @@
+.merchants-page{
+    height: 88vh;
+    margin-top: 20px;
+}
+
+.merchants-sidebar{
+    width: 23%;
+    height: 100%;
+}
+
+.list-group-item:first-child{
+    margin-top:5px;
+}
+
+.list-group-item{
+    height: 60px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(233, 233, 233);
+    border-top: 1px solid rgb(233, 233, 233) !important;
+    border-radius: 10px !important;
+    cursor: pointer;
+}
+
+.list-group-item:hover{
+    border-left: 3px solid rgb(0, 72, 187);
+}
+
+.merchants-sidebar input{
+    height: 50px;
+    border: none;
+    border-bottom: 1px solid rgb(66, 66, 66);
+}
+
+.merchants-details{
+    width: 70%;
+    height: 100%;
+}

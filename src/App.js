@@ -12,6 +12,8 @@ import MerchantPage from './components/Merchants';
 
 function App() {
   const [user, setUser] = useState(null);
+  const [merchants, setMerchants] = useState([])
+  const [orders, setOrders] = useState([])
 
   useEffect(() => {
     // auto-login
@@ -21,6 +23,18 @@ function App() {
       }
     });
   }, []);
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/merchandisers")
+    .then(res=>res.json())
+    .then(data=>setMerchants(data))
+  }, [])
+
+  useEffect(()=>{
+    fetch("http://localhost:3000/orders")
+    .then(res=>res.json())
+    .then(data=>setOrders(data))
+  }, [])
 
   function handleLogout() {
     setUser(null);
@@ -39,7 +53,7 @@ function App() {
         <Route path="/merchant/login" element={<LoginForm />} />
         <Route path="/merchants" element={
             <>
-              <MerchantPage/>
+              <MerchantPage merchants={merchants}/>
             </>
           }>
           </Route>

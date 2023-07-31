@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -7,7 +7,7 @@ const RegisterForm = () => {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -37,6 +37,7 @@ const RegisterForm = () => {
       .then((user) => {
         // Handle successful registration, e.g., show a success message, redirect to login page, etc.
         setIsLoading(false);
+        navigate("/merchant");
         console.log("Registration successful:", user);
       })
       .catch((error) => {
@@ -133,8 +134,7 @@ const RegisterForm = () => {
 
                   <div className="account-signup">
                     <p>
-                      Already Have an Account?{" "}
-                      <a href="login-email.html">Sign in</a>
+                      Already Have an Account? <a href="/login">Sign in</a>
                     </p>
                   </div>
                 </form>

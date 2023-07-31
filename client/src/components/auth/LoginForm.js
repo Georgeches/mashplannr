@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = () => {
-  const [email, setEmail] = useState("");
+const LoginForm = ({ onLogin }) => {
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -12,15 +13,18 @@ const LoginForm = () => {
       headers: {
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, password }),
     })
       .then((response) => {
         if (response.ok) {
           // Handle successful login here
+          navigate("/merchant");
+          response.json().then((user) => onLogin(user));
           // For example, redirect the user to the dashboard
         } else {
           // Handle login failure here
           // For example, display an error message
+          response.json().then((err) => console.log(err));
         }
       })
       .catch((error) => {
@@ -42,15 +46,15 @@ const LoginForm = () => {
         <form onSubmit={handleSubmit}>
           <div className="mb-3 form-focus">
             <input
-              type="email"
+              type="name"
               className="form-control floating"
-              id="email"
-              name="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
-            <label className="focus-label" htmlFor="email">
-              Email
+            <label className="focus-label" htmlFor="username">
+              Username
             </label>
           </div>
           <div className="mb-3 form-focus">

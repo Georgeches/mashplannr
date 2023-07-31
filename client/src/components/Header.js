@@ -41,7 +41,7 @@ function Header({ handleLogout }) {
                   </ul>
                 </li>
                 <li className="has-submenu megamenu">
-                  <Link to="/merchants">
+                  <Link to="/merchant">
                     Merchants <i className="fas fa-chevron-down"></i>
                   </Link>
                   <ul className="submenu mega-submenu">

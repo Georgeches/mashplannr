@@ -31,6 +31,7 @@ function Header({ handleLogout }) {
                   <a href="/">
                     Home <i className="fas fa-chevron-down"></i>
                   </a>
+                  
                   <ul className="submenu mega-submenu">
                     {/* ... Mega Submenu Content ... */}
                   </ul>

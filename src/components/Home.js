@@ -138,7 +138,7 @@ const Home = ({orders, merchants}) => {
             <canvas id="myChart"></canvas>
           </div>
 
-          <div className="col-lg-6 col-md-12 mt-3 bg-white border ms-3 border-rounded">
+          <div className="col-lg-6 col-md-12 mt-3 mt-md-0 bg-white border ms-3 border-rounded">
             <canvas id="mySecondChart"></canvas>
           </div>
         </div>

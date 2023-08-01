@@ -1,0 +1,54 @@
+::-webkit-scrollbar {
+    width: 5px;
+    height: 2px;
+}
+
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+
+.home{
+    margin-top: 100px;
+    height: 100vh;
+}
+
+.customers-list .list-group .list-group-item{
+    padding-bottom: 40px;
+    padding-top:15px;
+}
+
+@media only screen and (max-width: 800px) {
+    .home{
+        margin-top: 70px;
+        height: 100vh;
+    }
+    .recent-orders{
+        width: 85vh;
+        margin-left: -10px;
+    }
+    .orders-table{
+        width: 100vh; 
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .home{
+        margin-top: 70px;
+        height: 100vh;
+    }
+    .recent-orders{
+        width: 42vh;
+        margin-left: -10px;
+    }
+    .orders-table{
+        width: 700px; 
+    }
+}

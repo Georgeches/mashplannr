@@ -1,6 +1,9 @@
 .merchants-page{
     height: 88vh;
-    margin-top: 20px;
+}
+
+.offcanvas-top{
+    height: 120px !important;
 }
 
 .merchants-sidebar{
@@ -13,7 +16,7 @@
 }
 
 .list-group-item{
-    height: 60px;
+    height: 50px;
     margin-bottom: 10px;
     border: 1px solid rgb(233, 233, 233);
     border-top: 1px solid rgb(233, 233, 233) !important;
@@ -32,10 +35,30 @@
 }
 
 .merchants-details{
-    width: 70%;
     height: 100%;
 }
 
-.merchants-nav .nav-item{
-    margin-left: 20px;
+.offcanvas{
+    margin-top: 70px;
+}
+
+@media only screen and (min-width: 800px){
+    .merchants-details{
+        width: 70%;
+    }
+
+    .merchants-nav .nav-item{
+        margin-left: 20px;
+    }
+
+    .merchants-page{
+        margin-top: 110px;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .merchants-page{
+        margin-top: 75px;
+    }
+
 }

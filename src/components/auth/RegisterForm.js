@@ -7,7 +7,9 @@ const RegisterForm = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [vehicleRegistration, setVehicleRegistration] = useState("");
-
+  const [profilePicture, setProfilePicture] = useState("");
+  const [idNumber, setIdNumber] = useState("");
+  const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
@@ -28,6 +30,9 @@ const RegisterForm = () => {
         address,
         password,
         vehicleRegistration,
+        profilePicture,
+        idNumber,
+        status,
       }),
     })
       .then((r) => {
@@ -81,20 +86,75 @@ const RegisterForm = () => {
                       name="name"
                       type="text"
                       value={name}
+                      placeholder="Enter Your Name"
                       onChange={(e) => setName(e.target.value)}
                       required
                     />
                   </div>
                   <div className="mb-3">
+                    <label className="mb-2"> Id Number</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="id_number"
+                      name="id_number"
+                      placeholder="Enter Your Id Number"
+                      value={idNumber}
+                      onChange={(e) => setIdNumber(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  <div className="mb-3">
+                    <label className="mb-2"> Profile Picture Link</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="profile_picture"
+                      name="profile_picture"
+                      placeholder="Enter Your Profile Picture"
+                      value={profilePicture}
+                      onChange={(e) => setProfilePicture(e.target.value)}
+                      required
+                    />
+                  </div>
+
+                  {/* <div className="mb-3">
                     <label className="mb-2">Address</label>
                     <input
-                      type="password"
+                      type="text"
+                      className="form-control"
+                      id="vehicle_registration"
+                      name="vehicle_registration"
+                      placeholder="Enter Your Veh"
+                      value={vehicleRegistration}
+                      onChange={(e) => setVehicleRegistration(e.target.value)}
+                      required
+                    />
+                  </div> */}
+                  <div className="mb-3">
+                    <label className="mb-2">Vehicle Registration</label>
+                    <input
+                      type="text"
                       className="form-control"
                       id="address"
                       name="address"
-                      placeholder="Enter Your Address"
+                      placeholder="Enter Your Vehicle Reg"
                       value={address}
-                      onChange={(e) => setAddress(e.target.value)}
+                      onChange={(e) => setVehicleRegistration(e.target.value)}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="mb-2"> Status</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="status"
+                      name="status"
+                      placeholder="Enter Your Status"
+                      value={status}
+                      onChange={(e) => setStatus(e.target.value)}
                       required
                     />
                   </div>

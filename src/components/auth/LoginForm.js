@@ -42,6 +42,7 @@ const LoginForm = ({ onLogin }) => {
           <h3>
             Login <span></span>
           </h3>
+          <p className="mb-0">Welcome back! Please enter your details.</p>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="mb-3 form-focus">

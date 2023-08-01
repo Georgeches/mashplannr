@@ -9,6 +9,7 @@ import RegisterForm from "./components/auth/RegisterForm";
 import Header from "./components/Header";
 import Login from "./components/login";
 import MerchantPage from './components/Merchants';
+import Sidebar from "./components/Sidebar";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -45,6 +46,8 @@ function App() {
   return (
       <BrowserRouter>
         <Header onLogout={handleLogout} />
+        <div className="app d-flex justify-content-between">
+          <Sidebar/>
         <Routes>
             <Route path="/" element={
               <>
@@ -66,6 +69,7 @@ function App() {
               }>
             </Route>            
         </Routes>
+        </div>
       </BrowserRouter>
   );
 }

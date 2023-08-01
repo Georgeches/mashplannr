@@ -1,27 +1,107 @@
 import React from "react";
+import { useEffect, useRef } from "react";
+import { Chart } from 'chart.js/auto';
 import './Home.css'
 
 const Home = ({orders, merchants}) => {
+  const chartRef = useRef(null);
+  const secondChartRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = document.getElementById('myChart');
+
+    if (chartRef.current) {
+      // If the Chart instance exists, destroy it before creating a new one.
+      chartRef.current.destroy();
+    }
+
+    chartRef.current = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Sales 2023',
+          data: [400000, 300000, 400000, 500000, 450000, 530000, 470000, 650000, 600000, 550000, 450000, 400000],
+          borderWidth: 1,
+          borderColor: 'blue', // Define the line color
+          backgroundColor: 'rgba(0, 0, 255, 0.2)', // Define the background color for the area below the line
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const ctxtwo = document.getElementById('mySecondChart');
+
+    if (secondChartRef.current) {
+      // If the Chart instance exists, destroy it before creating a new one.
+      secondChartRef.current.destroy();
+    }
+
+    secondChartRef.current = new Chart(ctxtwo, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Profits 2023',
+          data: [
+            15000,
+            18000,
+            21000,
+            19000,
+            22000,
+            24000,
+            26000,
+            23000,
+            20000,
+            18000,
+            16000,
+            19000,
+          ],
+          borderWidth: 1,
+          borderColor: 'blue', // Define the line color
+          backgroundColor: 'rgba(0, 0, 255, 0.2)', // Define the background color for the area below the line
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }, []);
+
   return (
     <div className="container-fluid bg-light home">
       <div className="container pt-4">
         <h3>Dashboard</h3>
-
+        
         <div className="admin-summary row mt-4">
           <div className="col-lg-3 col-md-6">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
               <h4 className="fw-bold text-success">Total Revenue</h4>
               </div>
-              <h4 className="fw-normal text-muted">Ksh 2000000</h4>
+              <h4 className="fw-normal text-muted">Ksh 2500000</h4>
             </div>
           </div>
           </div>
 
           <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold text-primary">Total Sales</h4>
               </div>
@@ -31,25 +111,35 @@ const Home = ({orders, merchants}) => {
           </div>
 
           <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
-                <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Expenses</h4>
+                <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Profit</h4>
               </div>
-              <h4 className="fw-normal text-muted">Ksh 3000000</h4>
+              <h4 className="fw-normal text-muted">Ksh 2000000</h4>
             </div>
           </div>
           </div>
 
           <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Expenses</h4>
               </div>
               <h4 className="fw-normal text-muted">Ksh 3000000</h4>
             </div>
           </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-lg-5 col-md-12 bg-white border ms-3 border-rounded">
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <div className="col-lg-6 col-md-12 mt-3 bg-white border ms-3 border-rounded">
+            <canvas id="mySecondChart"></canvas>
           </div>
         </div>
 
@@ -60,9 +150,9 @@ const Home = ({orders, merchants}) => {
               </div>
               <hr/>
               <div className="customers-list">
-                <ul class="list-group" style={{height: "300px", overflowY: "scroll"}}>
+                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {orders.map(order=>
-                    <li class="list-group-item">{order?.customer_name}</li>
+                    <li key={order?.id} className="list-group-item">{order?.customer_name}</li>
                   )}
                 </ul>
               </div>
@@ -75,9 +165,9 @@ const Home = ({orders, merchants}) => {
               </div>
               <hr style={{marginTop: "8px"}}/>
               <div className="customers-list">
-                <ul class="list-group" style={{height: "300px", overflowY: "scroll"}}>
+                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {merchants.map(merchant=>
-                    <li class="list-group-item">{merchant?.name}</li>
+                    <li key={merchant?.id} className="list-group-item">{merchant?.name}</li>
                   )}
                 </ul>
               </div>
@@ -104,7 +194,8 @@ const Home = ({orders, merchants}) => {
             </thead>
             <tbody>
               {orders.map(order=>
-                <tr>
+                <tr key={order?.id}>
+            
                   <th scope="row">{order?.date}</th>
                   <td>{order?.customer_name}</td>
                   <td>{order?.products_ordered}</td>

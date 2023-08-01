@@ -23,7 +23,7 @@ const Sidebar = () => {
             </a>
         }
           <i
-            style={{ fontSize: "17px", color: "white", cursor: "pointer", position: "fixed", top: "25px", left:  submenuActive?"220px":"15px"}}
+            style={{ fontSize: "18px", color: "white", cursor: "pointer", position: "fixed", top: "25px", left:  submenuActive?"220px":"15px"}}
             className="fa-solid fa-bars"
             id="sidebar-close"
             onClick={e=>handleSidebarToggle(e)}

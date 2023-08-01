@@ -4,7 +4,7 @@ const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [vehicleRegistration, setVehicleRegistration] = useState("");
 
@@ -24,9 +24,10 @@ const RegisterForm = () => {
       body: JSON.stringify({
         name,
         email,
-        phone,
+        phoneNumber,
         address,
         password,
+        vehicleRegistration,
       }),
     })
       .then((r) => {

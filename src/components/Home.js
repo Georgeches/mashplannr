@@ -84,7 +84,7 @@ const Home = ({orders, merchants}) => {
 
   return (
     <div className="container-fluid bg-light home">
-      <div className="container pt-4">
+      <div className="container pt-3">
         <h3>Dashboard</h3>
         
         <div className="admin-summary row mt-4">

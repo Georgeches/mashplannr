@@ -1,7 +1,88 @@
+/*global Chart*/
 import React from "react";
 import './Home.css'
+import { useRef, useEffect } from "react";
 
 const Home = ({orders, merchants}) => {
+
+  const chartRef = useRef(null);
+  const secondChartRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = document.getElementById('myChart');
+
+    if (chartRef.current) {
+      // If the Chart instance exists, destroy it before creating a new one.
+      chartRef.current.destroy();
+    }
+
+    chartRef.current = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Sales 2023',
+          data: [400000, 300000, 400000, 500000, 450000, 530000, 470000, 650000, 600000, 550000, 450000, 400000],
+          borderWidth: 1,
+          borderColor: 'blue', // Define the line color
+          backgroundColor: 'rgba(0, 0, 255, 0.2)', // Define the background color for the area below the line
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const ctxtwo = document.getElementById('mySecondChart');
+
+    if (secondChartRef.current) {
+      // If the Chart instance exists, destroy it before creating a new one.
+      secondChartRef.current.destroy();
+    }
+
+    secondChartRef.current = new Chart(ctxtwo, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Monthly Profits 2023',
+          data: [
+            15000,
+            18000,
+            21000,
+            19000,
+            22000,
+            24000,
+            26000,
+            23000,
+            20000,
+            18000,
+            16000,
+            19000,
+          ],
+          borderWidth: 1,
+          borderColor: 'blue', // Define the line color
+          backgroundColor: 'rgba(0, 0, 255, 0.2)', // Define the background color for the area below the line
+          fill: true,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  }, []);
+
   return (
     <div className="container-fluid bg-light home">
       <div className="container pt-4">
@@ -50,6 +131,16 @@ const Home = ({orders, merchants}) => {
               <h4 className="fw-normal text-muted">Ksh 3000000</h4>
             </div>
           </div>
+          </div>
+        </div>
+
+        <div className="row">
+          <div className="col-lg-5 col-md-12 bg-white border ms-3 border-rounded">
+            <canvas id="myChart"></canvas>
+          </div>
+
+          <div className="col-lg-6 col-md-12 mt-3 mt-md-0 bg-white border ms-3 border-rounded">
+            <canvas id="mySecondChart"></canvas>
           </div>
         </div>
 

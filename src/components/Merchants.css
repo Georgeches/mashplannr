@@ -40,6 +40,7 @@
 
 .offcanvas{
     margin-top: 70px;
+    z-index: 9999999;
 }
 
 @media only screen and (min-width: 800px){

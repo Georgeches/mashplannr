@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
     height: 2px;
 }
 
@@ -16,7 +16,7 @@ background: #555;
 }
 
 .home{
-    margin-top: 100px;
+    margin-top: 85px;
     height: 100vh;
 }
 

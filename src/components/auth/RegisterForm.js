@@ -6,6 +6,8 @@ const RegisterForm = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
+  const [vehicleRegistration, setVehicleRegistration] = useState("");
+
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (e) => {

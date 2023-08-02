@@ -17,7 +17,6 @@ background: #555;
 
 .home{
     margin-top: 85px;
-    height: 100vh;
 }
 
 .customers-list .list-group .list-group-item{
@@ -28,7 +27,6 @@ background: #555;
 @media only screen and (max-width: 800px) {
     .home{
         margin-top: 70px;
-        height: 100vh;
     }
     .recent-orders{
         width: 85vh;
@@ -42,11 +40,11 @@ background: #555;
 @media only screen and (max-width: 600px) {
     .home{
         margin-top: 70px;
-        height: 100vh;
+        margin-left: 35px;
     }
     .recent-orders{
-        width: 42vh;
-        margin-left: -10px;
+        width: 39.5vh;
+        margin-left: -5px;
     }
     .orders-table{
         width: 700px; 

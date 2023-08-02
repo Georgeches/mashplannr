@@ -18,7 +18,7 @@ const Sidebar = () => {
       <div className="sidebar" style={{width: submenuActive?"260px":"50px"}}>
         <div className="d-flex align-items-center justify-content-between">
         {submenuActive&&
-            <a href="#" className="logo">
+            <a href="/" className="logo">
                 mashPlannr.
             </a>
         }

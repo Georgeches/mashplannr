@@ -89,9 +89,9 @@ const Home = ({orders, merchants}) => {
         <h3>Dashboard</h3>
 
         <div className="admin-summary row mt-4">
-          <div className="col-lg-3 col-md-6">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="col-lg-3 col-md-6 col-11">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
               <h4 className="fw-bold text-success">Total Revenue</h4>
               </div>
@@ -100,9 +100,9 @@ const Home = ({orders, merchants}) => {
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="col-md-6 col-lg-3 col-11">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold text-primary">Total Sales</h4>
               </div>
@@ -111,9 +111,9 @@ const Home = ({orders, merchants}) => {
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="col-md-6 col-lg-3 col-11">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Expenses</h4>
               </div>
@@ -122,9 +122,9 @@ const Home = ({orders, merchants}) => {
           </div>
           </div>
 
-          <div className="col-md-6 col-lg-3">
-          <div class="card" style={{height: "154px"}}>
-            <div class="card-body mt-3">
+          <div className="col-md-6 col-lg-3 col-11">
+          <div className="card" style={{height: "154px"}}>
+            <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Expenses</h4>
               </div>
@@ -145,30 +145,30 @@ const Home = ({orders, merchants}) => {
         </div>
 
         <div className="row mt-5 associates">
-          <div className="col-12 px-4 mx-md-3 my-3 my-md-0 bg-white border col-md-5 col-lg-5" style={{height: "400px", overflow: "hidden"}}>
+          <div className="col-11 ms-md-0 ms-2 px-4 mx-md-3 my-3 my-md-0 bg-white border col-md-5 col-lg-5" style={{height: "400px", overflow: "hidden"}}>
               <div className="customers-header pt-4">
                 <h4>Customers</h4>
               </div>
               <hr/>
               <div className="customers-list">
-                <ul class="list-group" style={{height: "300px", overflowY: "scroll"}}>
+                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {orders.map(order=>
-                    <li class="list-group-item">{order?.customer_name}</li>
+                    <li key={order.id} className="list-group-item">{order?.customer_name}</li>
                   )}
                 </ul>
               </div>
           </div>
 
-          <div className="col-12 px-4 bg-white border col-md-6 col-lg-6" style={{height: "400px", overflow: "hidden"}}>
+          <div className="col-11 ms-md-0 ms-2 px-4 bg-white border col-md-6 col-lg-6" style={{height: "400px", overflow: "hidden"}}>
               <div className="customers-header pt-4 d-flex justify-content-between">
                 <h4>Merchants</h4>
                 <a href="/merchants" className="text-muted">View all</a>
               </div>
               <hr style={{marginTop: "8px"}}/>
               <div className="customers-list">
-                <ul class="list-group" style={{height: "300px", overflowY: "scroll"}}>
+                <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {merchants.map(merchant=>
-                    <li class="list-group-item">{merchant?.name}</li>
+                    <li key={merchant.id} className="list-group-item">{merchant?.name}</li>
                   )}
                 </ul>
               </div>
@@ -195,7 +195,7 @@ const Home = ({orders, merchants}) => {
             </thead>
             <tbody>
               {orders.map(order=>
-                <tr>
+                <tr key={order.id}>
                   <th scope="row">{order?.date}</th>
                   <td>{order?.customer_name}</td>
                   <td>{order?.products_ordered}</td>

@@ -1,11 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
-function Header({ handleLogout }) {
+import React, { useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
+function Header({ handleLogout, merchants, orders, setCurrentMerchant }) {
+
+  const [showSearchCard, setShowCard] = useState(false)
+  const [headerSearch, setHeaderSearch] = useState("0")
+  const nav = useNavigate()
+
+  function toggleCard(e){
+    e.preventDefault()
+    setTimeout(()=>setShowCard(!showSearchCard), 500)
+  }
+
+  function navigateToMerchant(e, merchant){
+    e.preventDefault()
+    setCurrentMerchant(merchant)
+    nav('/merchants')
+  }
+    
+  useEffect(()=>{
+    headerSearch===""&&setHeaderSearch("0")
+  },[headerSearch])
+
   return (
     <div>
       <header className="header header-custom header-fixed header-one">
         <div className="container-fluid">
-              <nav className="navbar container-fluid justify-content-between align-items-center">
+              <nav className="navbar mt-2 container-fluid justify-content-between align-items-center">
             <div className="navbar-header">
             
               <a href="/" className="navbar-brand logo">
@@ -27,29 +47,18 @@ function Header({ handleLogout }) {
                 </a>
               </div>
               <ul className="main-nav">
-                <li className="has-submenu megamenu">
-                  <a href="/">
-                    Home <i className="fas fa-chevron-down"></i>
-                  </a>
-                  
-                  <ul className="submenu mega-submenu">
-                    {/* ... Mega Submenu Content ... */}
-                  </ul>
-                </li>
-                <li className="has-submenu megamenu">
-                  <Link to="/merchants">
-                    Merchants <i className="fas fa-chevron-down"></i>
-                  </Link>
-                  <ul className="submenu mega-submenu">
-                    {/* ... Mega Submenu Content ... */}
-                  </ul>
-                </li>
-
-                <li className="has-submenu">
-                  <a href="/login">
-                    Admin <i className="fas fa-chevron-down"></i>
-                  </a>
-                  <ul className="submenu">{/* ... Submenu Content ... */}</ul>
+                
+                <li className="search-bar">
+                  <form>
+                    <input className="form-control" id="header-search" placeholder="Search..." autoComplete="off" onBlur={e=>toggleCard(e)} onFocus={e=>toggleCard(e)} onChange={e=>setHeaderSearch(e.target.value)}/>
+                  </form>
+                  <div className="card form-card" style={{display: showSearchCard?"block":"none"}}>
+                    <ul className="search-results">
+                      {merchants.filter(this_merchant=>this_merchant.name.toLowerCase().includes(headerSearch.toLowerCase())).map(merchant=><li key={merchant.id} className="merchant-result result" onClick={e=>navigateToMerchant(e, merchant)}>{merchant.name}</li>)}
+                      {orders.filter(this_order=>this_order.customer_name.toLowerCase().includes(headerSearch.toLowerCase())).map(order=><li key={order.id} className="order-result result">Order from {order.customer_name}</li>)}
+                      {orders.filter(this_order=>this_order.customer_name.toLowerCase().includes(headerSearch.toLowerCase())).map(order=><li key={order.id} className="order-result result">{order.customer_name}</li>)}
+                    </ul>
+                  </div>
                 </li>
 
                 <li className="login-link">

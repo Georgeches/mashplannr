@@ -1,8 +1,9 @@
 import React from 'react';
+import './Orders.css'
 
 function Orders() {
     return (
-        <div className="container mt-5 px-2">
+        <div className="container order-page px-2">
             <div className="mb-2 d-flex justify-content-between align-items-center">
                 <div className="position-relative">
                     <span className="position-absolute search"><i className="fa fa-search"></i></span>

@@ -4,21 +4,19 @@ body{
     font-family: 'Open Sans', sans-serif;
     
 }
-.search{
-  
-  top:6px;
-  left:10px;
+
+.order-page{
+    margin-top: 110px;
 }
 
-.form-control{
-    
-    border:none;
-    padding-left:32px;
+.search{
+  top:12px;
+  left: 290px;
+  cursor: pointer;
 }
+
 
 .form-control:focus{
-    
-    border:none;
     box-shadow:none;
 }
 

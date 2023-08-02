@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Login from "./components/login";
 import MerchantPage from './components/Merchants';
 import Sidebar from "./components/Sidebar";
+import Orders from "./components/Orders";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -48,6 +49,7 @@ function App() {
         <Header onLogout={handleLogout} />
         <div className="app d-flex justify-content-between">
           <Sidebar/>
+          <Orders />
         <Routes>
             <Route path="/" element={
               <>

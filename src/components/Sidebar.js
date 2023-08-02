@@ -48,6 +48,18 @@ const Sidebar = () => {
                 <li className="item d-flex align-center">
                 <a href="#"><box-icon type='solid' name='calendar-check' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Leave Management</a>
                 </li>
+
+                <li className="item d-flex align-center">
+                <a href="#"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Task Manager</a>
+                </li>
+
+                <li className="item d-flex align-center">
+                <a href="#"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Reports</a>
+                </li>
+
+                <li className="item d-flex align-center">
+                <a href="#"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Profile</a>
+                </li>
          </div>
           </ul>
         </div>

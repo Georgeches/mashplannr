@@ -11,7 +11,7 @@ function Header({ handleLogout }) {
               <a href="/" className="navbar-brand logo">
                 {/* Your logo image */}
               </a>
-              <a className="navbar-brand fw-bold">mashPlannr.</a>
+              <a href="/" className="navbar-brand fw-bold">mashPlannr.</a>
             </div>
             <div className="main-menu-wrapper d-flex align-items-center">
               <div className="menu-header">

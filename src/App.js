@@ -10,6 +10,7 @@ import Header from "./components/Header";
 import Login from "./components/login";
 import MerchantPage from './components/Merchants';
 import Sidebar from "./components/Sidebar";
+import Orders from "./components/Orders";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -67,7 +68,14 @@ function App() {
                   <MerchantPage setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
                 </>
               }>
-            </Route>            
+            </Route>
+
+            <Route path="/orders" element={
+                <>
+                  <Orders setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route>          
         </Routes>
         </div>
       </BrowserRouter>

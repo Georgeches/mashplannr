@@ -35,7 +35,7 @@ const LoginForm = ({ onLogin }) => {
   return (
     <div
       className="container d-flex justify-content-center align-items-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh", minWidth: "100vh" }}
     >
       <div className="col-md-12 col-lg-6 login-right">
         <div className="login-header">

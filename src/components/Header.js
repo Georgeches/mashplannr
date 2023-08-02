@@ -65,10 +65,12 @@ function Header({ handleLogout }) {
                   </a>
                 </li>
                 <li className="register-btn">
+                  {/** 
                   <a href="/logout" className="btn btn-primary log-btn">
                     <i onClick={handleLogout} className="feather-lock"></i>
                     Logout
                   </a>
+                  */}
                 </li>
               </ul>
             </div>

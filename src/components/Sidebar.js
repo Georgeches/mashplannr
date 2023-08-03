@@ -42,7 +42,7 @@ const Sidebar = () => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='truck' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"230px"}}></box-icon></a><a href="#">Orders</a>
+                <a href="/orders"><box-icon type='solid' name='truck' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"230px"}}></box-icon></a><a href="/orders">Orders</a>
                 </li>
 
                 <li className="item d-flex align-center">

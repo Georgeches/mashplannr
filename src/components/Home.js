@@ -32,7 +32,7 @@ const Home = ({orders, merchants}) => {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: false
           }
         }
       }
@@ -76,7 +76,7 @@ const Home = ({orders, merchants}) => {
       options: {
         scales: {
           y: {
-            beginAtZero: true
+            beginAtZero: false
           }
         }
       }

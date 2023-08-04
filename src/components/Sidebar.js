@@ -42,23 +42,23 @@ const Sidebar = () => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='truck' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"230px"}}></box-icon></a><a href="#">Orders</a>
+                <a href="/orders"><box-icon type='solid' name='truck' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"230px"}}></box-icon></a><a href="/orders">Orders</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='calendar-check' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Leave Management</a>
+                <a href="/leavemanagement"><box-icon type='solid' name='calendar-check' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/leavemanagement">Leave Management</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Task Manager</a>
+                <a href="/taskmanager"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/taskmanager">Task Manager</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Reports</a>
+                <a href="/reports"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/reports">Reports</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="#"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="#">Profile</a>
+                <a href="/companyprofile"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
                 </li>
          </div>
           </ul>

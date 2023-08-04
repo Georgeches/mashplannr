@@ -11,6 +11,8 @@ import Login from "./components/login";
 import MerchantPage from './components/Merchants';
 import Sidebar from "./components/Sidebar";
 import Orders from "./components/Orders";
+import Taskmanager from "./components/Taskmanager";
+import Nopage from "./components/Nopage";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -51,6 +53,13 @@ function App() {
           <Sidebar/>
         
         <Routes>
+            <Route path="*" element={
+              <>
+              <Nopage merchants={merchants} orders={orders}/>
+              </>
+            }>
+            </Route>
+
             <Route path="/" element={
               <>
               <Home merchants={merchants} orders={orders}/>
@@ -76,7 +85,14 @@ function App() {
                   <Orders setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
                 </>
               }>
-            </Route>          
+            </Route>  
+
+            <Route path="/taskmanager" element={
+                <>
+                  <Taskmanager setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route> 
         </Routes>
         </div>
       </BrowserRouter>

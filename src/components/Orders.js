@@ -38,7 +38,7 @@ function Orders() {
                             <td>Soap</td>
                             <td className="text-end"><span className="fw-bolder">1000Ksh</span> <i className="fa fa-ellipsis-h  ms-2"></i></td>
                         </tr>
-                        {/* Add more rows as needed */}
+                        {''}
                     </tbody>
                 </table>
             </div>

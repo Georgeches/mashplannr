@@ -49,6 +49,7 @@ function App() {
         <Header setCurrentMerchant={setCurrentMerchant} onLogout={handleLogout} merchants={merchants} orders={orders}/>
         <div className="app d-flex justify-content-between">
           <Sidebar/>
+        
         <Routes>
             <Route path="/" element={
               <>

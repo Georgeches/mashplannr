@@ -25,6 +25,17 @@ nav{
   font-size: 25px;
 }
 
+.nopage{
+  margin-top: 125px;
+  margin-left: 70px;
+}
+
+.nopage a{
+  color: green;
+  font-weight: 600;
+  font-size: 17px;
+}
+
 @media only screen and (min-width: 800px){
   .main-nav{
     margin-top: 5px !important;

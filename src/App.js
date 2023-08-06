@@ -64,7 +64,7 @@ function App() {
 
             <Route path="/" element={
               <>
-              <Home merchants={merchants} orders={orders}/>
+              <Home setCurrentMerchant={setCurrentMerchant} merchants={merchants} orders={orders}/>
               </>
             }>
             </Route>

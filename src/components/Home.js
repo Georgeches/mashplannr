@@ -2,11 +2,13 @@
 import React from "react";
 import './Home.css'
 import { useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-const Home = ({orders, merchants}) => {
+const Home = ({orders, merchants, setCurrentMerchant}) => {
 
   const chartRef = useRef(null);
   const secondChartRef = useRef(null);
+  const nav = useNavigate()
 
   useEffect(() => {
     const ctx = document.getElementById('myChart');
@@ -90,7 +92,7 @@ const Home = ({orders, merchants}) => {
 
         <div className="admin-summary row mt-4">
           <div className="col-lg-3 col-md-6 col-11">
-          <div className="card" style={{height: "154px"}}>
+          <div className="card card-first" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
               <h4 className="fw-bold text-success">Total Revenue</h4>
@@ -101,7 +103,7 @@ const Home = ({orders, merchants}) => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-11">
-          <div className="card" style={{height: "154px"}}>
+          <div className="card card-second" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold text-primary">Total Sales</h4>
@@ -112,7 +114,7 @@ const Home = ({orders, merchants}) => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-11">
-          <div className="card" style={{height: "154px"}}>
+          <div className="card card-third" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold" style={{color: "rgb(0, 72, 187)"}}>Total Expenses</h4>
@@ -123,7 +125,7 @@ const Home = ({orders, merchants}) => {
           </div>
 
           <div className="col-md-6 col-lg-3 col-11">
-          <div className="card" style={{height: "154px"}}>
+          <div className="card card-fourth" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
                 <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Expenses</h4>
@@ -153,7 +155,7 @@ const Home = ({orders, merchants}) => {
               <div className="customers-list">
                 <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {orders.map(order=>
-                    <li key={order.id} className="list-group-item">{order?.customer_name}</li>
+                    <li key={order.id} className="list-group-item d-flex align-items-center">{order?.customer_name}</li>
                   )}
                 </ul>
               </div>
@@ -168,7 +170,16 @@ const Home = ({orders, merchants}) => {
               <div className="customers-list">
                 <ul className="list-group" style={{height: "300px", overflowY: "scroll"}}>
                   {merchants.map(merchant=>
-                    <li key={merchant.id} className="list-group-item">{merchant?.name}</li>
+                    <li key={merchant.id} onClick={e=>{
+                      e.preventDefault();
+                      setCurrentMerchant(merchant)
+                      nav('/merchants')
+                    }} className="list-group-item d-flex align-items-center">
+                      <div>
+                        <img src={merchant?.profile_picture} alt="pic"/>
+                      </div>
+                      {merchant?.name}
+                    </li>
                   )}
                 </ul>
               </div>

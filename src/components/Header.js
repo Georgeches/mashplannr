@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-function Header({ handleLogout, merchants, orders, setCurrentMerchant }) {
+function Header({ user, handleLogout, merchants, orders, setCurrentMerchant }) {
 
   const [showSearchCard, setShowCard] = useState(false)
   const [headerSearch, setHeaderSearch] = useState("0")
@@ -16,7 +16,7 @@ function Header({ handleLogout, merchants, orders, setCurrentMerchant }) {
     setCurrentMerchant(merchant)
     nav('/merchants')
   }
-    
+  
   useEffect(()=>{
     headerSearch===""&&setHeaderSearch("0")
   },[headerSearch])
@@ -61,24 +61,35 @@ function Header({ handleLogout, merchants, orders, setCurrentMerchant }) {
                   </div>
                 </li>
 
-                <li className="login-link">
-                  <a href="/login">Login / Signup</a>
-                </li>
-                <li className="register-btn">
-                  <a
-                    href="/login
-                  "
-                    className="btn reg-btn"
-                  >
-                    <i className="feather-user"></i>Register
-                  </a>
-                </li>
-                <li className="register-btn">
-                  <a href="/logout" className="btn btn-primary log-btn">
-                    <i onClick={handleLogout} className="feather-lock"></i>
-                    Logout
-                  </a>
-                </li>
+                {user?.name===undefined?
+                  <>
+                    <li className="register-btn login-btn">
+                    <a
+                      href="/login
+                    "
+                      className="btn btn-primary border-0"
+                    >
+                      <i className="feather-user"></i>Login
+                    </a>
+                  </li>
+                  <li className="register-btn">
+                    <a
+                      href="/register
+                    "
+                      className="btn reg-btn"
+                    >
+                      <i className="feather-user"></i>Register
+                    </a>
+                  </li>
+                  </>
+                  :
+                  <li className="register-btn">
+                    <a href="/logout" className="btn btn-primary log-btn">
+                      <i onClick={handleLogout} className="feather-lock"></i>
+                      Logout
+                    </a>
+                  </li>
+                }
               </ul>
             </div>
           </nav>

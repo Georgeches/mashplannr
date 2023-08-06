@@ -128,7 +128,7 @@ const Home = ({orders, merchants, setCurrentMerchant}) => {
           <div className="card card-fourth" style={{height: "154px"}}>
             <div className="card-body mt-3">
               <div className="mb-4">
-                <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Expenses</h4>
+                <h4 className="fw-bold" style={{color: "rgb(255, 55, 55)"}}>Total Profits</h4>
               </div>
               <h4 className="fw-normal text-muted">Ksh 3000000</h4>
             </div>

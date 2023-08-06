@@ -6,6 +6,8 @@ const LoginForm = ({ onLogin }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  let screenWidth = window.screen.width
+
   const handleSubmit = function (e) {
     e.preventDefault();
     fetch("/login", {
@@ -41,9 +43,9 @@ const LoginForm = ({ onLogin }) => {
   };
 
   return (
-    <div className="container" style={{ minHeight: "100vh" }}>
-      <div className="d-flex justify-content-center align-items-center">
-        <div className="col-md-12 col-lg-6 login-right">
+    <div className="justify-content-center login-div" style={{ minHeight: "100vh", display: "flex", minWidth:`${screenWidth}px`}}>
+      <div className="container-fluid d-flex justify-content-center align-items-center">
+        <div className="login-right">
           <div className="login-header">
             <h3>
               Login <span></span>

@@ -36,7 +36,7 @@ const LoginForm = ({ onLogin }) => {
         }
       })
       .catch((error) => {
-        console.error("Error:", error);
+        // console.error("Error:", error);
       });
   };
 

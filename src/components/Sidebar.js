@@ -50,15 +50,15 @@ const Sidebar = () => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/taskmanager"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/taskmanager">Task Manager</a>
+                <a href="/taskmanager"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"350px"}}></box-icon></a> <a href="/taskmanager">Task Manager</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/reports"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/reports">Reports</a>
+                <a href="/reports"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"410px"}}></box-icon></a> <a href="/reports">Reports</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/companyprofile"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
+                <a href="/companyprofile"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"470px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
                 </li>
          </div>
           </ul>

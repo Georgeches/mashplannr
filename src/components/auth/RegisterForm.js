@@ -1,20 +1,39 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 const RegisterForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phone, setPhone] = useState("");
+  const [phone_number, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
+  const [vehicle_registration, setVehicleRegistration] = useState("");
+  const [profile_picture, setProfilePicture] = useState("");
+  const [id_number, setIdNumber] = useState("");
+  const [status, setStatus] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    return () => {
+      // Cleanup function for ongoing fetch request if the component is unmounted
+      if (isLoading) {
+        // Cancel the fetch request if it's still loading
+        setIsLoading(false);
+      }
+    };
+  }, [isLoading]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    setError(""); // Clear any previous error message
     setIsLoading(true);
+
     // Perform form validation here (e.g., check for valid email format, strong password, etc.)
     // If validation passes, proceed with form submission
 
-    fetch("/signup", {
+    fetch("/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,9 +41,13 @@ const RegisterForm = () => {
       body: JSON.stringify({
         name,
         email,
-        phone,
+        phone_number,
         address,
         password,
+        vehicle_registration,
+        profile_picture,
+        id_number,
+        status,
       }),
     })
       .then((r) => {
@@ -35,122 +58,166 @@ const RegisterForm = () => {
         }
       })
       .then((user) => {
-        // Handle successful registration, e.g., show a success message, redirect to login page, etc.
         setIsLoading(false);
         navigate("/merchant");
         console.log("Registration successful:", user);
       })
       .catch((error) => {
-        // Handle registration error, e.g., show an error message, reset form fields, etc.
         setIsLoading(false);
+        setError(
+          "Failed to register. Please check your details and try again."
+        );
         console.error("Registration error:", error.message);
       });
   };
 
   return (
-    <div>
-      {/* Your header code goes here */}
-      <div className="login-content-info container">
-        <div className="row justify-content-center">
-          <div className="col-lg-4 col-md-6">
-            <div className="account-content">
-              <div className="login-shapes">
-                {/* Your shape images go here */}
-              </div>
-              <div className="account-info">
-                <div className="login-back">
-                  <a href="/">
-                    <i className="fa-solid fa-arrow-left-long"></i> Back
-                  </a>
-                </div>
-                <div className="login-title">
-                  <h3>Merchant Signup</h3>
-                  <p className="mb-0">
-                    Welcome back! Please enter your details.
-                  </p>
-                </div>
-                <form onSubmit={handleSubmit}>
-                  <div className="mb-3">
-                    <label className="mb-2">Name</label>
-                    <input
-                      className="form-control form-control-lg group_formcontrol form-control-phone"
-                      id="name"
-                      name="name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="mb-2">Address</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="address"
-                      name="address"
-                      placeholder="Enter Your Address"
-                      value={address}
-                      onChange={(e) => setAddress(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="mb-2">Email</label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="form-control"
-                      placeholder="Enter Your Email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <label className="mb-2">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      id="password"
-                      name="password"
-                      placeholder="Enter Your Password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      required
-                    />
-                  </div>
-
-                  <div className="mb-3">
-                    <button
-                      className="btn w-100 btn-primary"
-                      type="submit"
-                      disabled={isLoading}
-                    >
-                      {isLoading ? "Creating Account..." : "Create Account"}
-                    </button>
-                  </div>
-
-                  <div className="account-signup">
-                    <p>
-                      Already Have an Account? <a href="/login">Sign in</a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
+    <div
+      className="container d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="col-md-12 col-lg-6 login-right">
+        <div className="login-header">
+          <h3>
+            Login <span></span>
+          </h3>
         </div>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3 form-focus">
+            <input
+              type="name"
+              className="form-control floating"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="username">
+              Name
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="email"
+              className="form-control floating"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="email">
+              Email
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="password"
+              className="form-control floating"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="password">
+              Password
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={phone_number}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="phoneNumber">
+              Phone Number
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="address"
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="address">
+              Address
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="vehicleRegistration"
+              name="vehicleRegistration"
+              value={vehicle_registration}
+              onChange={(e) => setVehicleRegistration(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="vehicleRegistration">
+              Vehicle Registration
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="profilePicture"
+              name="profilePicture"
+              value={profile_picture}
+              onChange={(e) => setProfilePicture(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="profilePicture">
+              Profile Picture Link
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="idNumber"
+              name="idNumber"
+              value={id_number}
+              onChange={(e) => setIdNumber(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="idNumber">
+              ID Number
+            </label>
+          </div>
+          <div className="mb-3 form-focus">
+            <input
+              type="text"
+              className="form-control floating"
+              id="status"
+              name="status"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            />
+            <label className="focus-label" htmlFor="status">
+              Status
+            </label>
+          </div>
+
+          {error && <p className="text-danger">{error}</p>}
+
+          <button
+            className="btn btn-primary w-100 btn-lg login-btn"
+            type="submit"
+            disabled={isLoading}
+          >
+            {isLoading ? "Creating Account..." : "Create Account"}
+          </button>
+        </form>
+        <p>
+          Already have an account? &nbsp;
+          <Link to="/login">Login</Link>
+        </p>
       </div>
-      {/* Your mouse cursor code goes here */}
-      <div className="mouse-cursor cursor-outer"></div>
-      <div className="mouse-cursor cursor-inner"></div>
     </div>
   );
 };
 
 export default RegisterForm;
-
-// <div className="mouse-cursor cursor-outer"></div>
-// <div className="mouse-cursor cursor-inner"></div>

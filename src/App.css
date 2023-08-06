@@ -6,6 +6,10 @@ li{
   list-style-type: none;
 }
 
+.login-btn a{
+  background-color: rgb(0, 119, 255);
+}
+
 nav{
   display: flex;
   justify-content: space-between;

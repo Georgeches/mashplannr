@@ -15,7 +15,7 @@ import Taskmanager from "./components/Taskmanager";
 import Nopage from "./components/Nopage";
 
 function App() {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState({});
   const [merchants, setMerchants] = useState([])
   const [orders, setOrders] = useState([])
   const [currentMerchant, setCurrentMerchant] = useState({})
@@ -43,12 +43,14 @@ function App() {
   }, [])
 
   function handleLogout() {
-    setUser(null);
+    setUser({});
   }
+
+  console.log(user)
 
   return (
       <BrowserRouter>
-        <Header setCurrentMerchant={setCurrentMerchant} onLogout={handleLogout} merchants={merchants} orders={orders}/>
+        <Header user={user} setCurrentMerchant={setCurrentMerchant} onLogout={handleLogout} merchants={merchants} orders={orders}/>
         <div className="app d-flex justify-content-between">
           <Sidebar/>
         

@@ -1,10 +1,10 @@
-import React from 'react';
+import  React from 'react';
 import './taskmanager.css'
 
 const Taskmanager = () => {
   return (
     <section className="vh-100">
-      <div className="container py-5 h-100">
+      <div className="container py-5 h-10">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-lg-8 col-md-10">
             <div className="card" id="list1" style={{ borderRadius: '.75rem', backgroundColor: '(0, 119, 255)' }}>
@@ -12,13 +12,13 @@ const Taskmanager = () => {
 
                 <p className="h1 text-center mt-3 mb-4 pb-3 text-primary">
                   <i className="fas fa-check-square me-1"></i>
-                  <u>My Todo-s</u>
+                  <u>Task Manager </u>
                 </p>
 
                 <div className="pb-2">
                   <div className="card">
                     <div className="card-body">
-                      <div className="d-flex flex-row align-items-center">
+                      <div className="d-flex align-items-center">
                         <input type="text" className="form-control form-control-lg" id="exampleFormControlInput1"
                           placeholder="Add new..." />
                         <a href="#!" data-mdb-toggle="tooltip" title="Set due date"><i

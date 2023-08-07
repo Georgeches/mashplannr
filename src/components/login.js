@@ -35,36 +35,3 @@ function Login() {
 }
 
 export default Login;
-//  function redirectToDashboard(user) {
-//    if (user.user_type === "customer") {
-//      window.location.href = "/customerdash";
-//    } else if (user.user_type === "restaurant_owner") {
-//      window.location.href = "/restaurantdash";
-//    } else if (user.user_type === "admin") {
-//      window.location.href = "/admindash";
-//    }
-//  }
-//  function handleSubmit(e) {
-//    e.preventDefault();
-//    fetch("/login", {
-//      method: "POST",
-//      headers: {
-//        "Content-Type": "application/json",
-//      },
-//      body: JSON.stringify({ username, password }),
-//    })
-//      .then((r) => {
-//        if (r.ok) {
-//          r.json().then((user) => {
-//            onLogin(user);
-//            setErrorMessage(null);
-//            redirectToDashboard(user);
-//          });
-//        } else {
-//          setErrorMessage("Login details do not match");
-//        }
-//      })
-//      .catch((error) => {
-//        setErrorMessage("An error occurred. Please try again.");
-//      });
-//  }

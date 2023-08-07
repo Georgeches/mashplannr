@@ -31,7 +31,7 @@ const LoginForm = ({ onLogin }) => {
           navigate("/admin/dashboard");
         } else if (data.user_type === "merchant") {
           // Redirect to the merchant dashboard
-          navigate("/merchant/dashboard");
+          navigate("/");
         } else {
           // Handle other user types or unexpected responses
           throw new Error("Unknown user type.");

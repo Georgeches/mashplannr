@@ -121,6 +121,19 @@ function App() {
             element={
               <>
                 <Taskmanager
+                  orders={orders}
+                  setCurrentMerchant={setCurrentMerchant}
+                  currentMerchant={currentMerchant}
+                  merchants={merchants}
+                />
+              </>
+            }
+          ></Route>
+          <Route
+            path="/taskmanager"
+            element={
+              <>
+                <Taskmanager
                   setCurrentMerchant={setCurrentMerchant}
                   currentMerchant={currentMerchant}
                   merchants={merchants}

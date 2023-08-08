@@ -34,7 +34,7 @@ const LeafletMap = ({ currentMerchant }) => {
       <div class="mapouter">
         <div class="gmap_canvas">
           <iframe
-            width="600"
+            width="100%"
             height="500"
             id="gmap_canvas"
             src={`https://maps.google.com/maps?q=${latitude},${longitude}&output=embed`}

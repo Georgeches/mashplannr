@@ -60,7 +60,7 @@ const Sidebar = () => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/companyprofile"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"470px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
+                <a href="/companyprofile"><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
                 </li>
          </div>
           </ul>

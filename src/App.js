@@ -13,6 +13,8 @@ import Sidebar from "./components/Sidebar";
 import Orders from "./components/Orders";
 import Taskmanager from "./components/Taskmanager";
 import Nopage from "./components/Nopage";
+import Calendar from "./components/Calender";
+
 
 function App() {
   const [user, setUser] = useState({});
@@ -60,6 +62,7 @@ function App() {
       />
       <div className="app d-flex justify-content-between">
         <Sidebar />
+        
 
         <Routes>
           <Route
@@ -89,6 +92,8 @@ function App() {
           <Route path="/register" element={<RegisterForm />} />
 
           <Route path="/merchant/login" element={<LoginForm />} />
+
+          <Route path="/calendar" component={Calendar} />
 
           <Route
             path="/merchants"
@@ -141,6 +146,7 @@ function App() {
               </>
             }
           ></Route>
+            
         </Routes>
       </div>
     </BrowserRouter>

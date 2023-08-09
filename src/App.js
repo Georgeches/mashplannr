@@ -17,21 +17,16 @@ import Calendar from "./components/Calender";
 
 
 function App() {
-  const [user, setUser] = useState({});
-  const [merchants, setMerchants] = useState([]);
-  const [orders, setOrders] = useState([]);
-  const [currentMerchant, setCurrentMerchant] = useState({});
 
-  //console.log(currentMerchant);
+  if(localStorage.getItem("current_user")===null){
+    localStorage.setItem('current_user', JSON.stringify({}))
+  }
 
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("current_user")));
+  const [merchants, setMerchants] = useState([])
+  const [orders, setOrders] = useState([])
+  const [currentMerchant, setCurrentMerchant] = useState({})
+
 
   useEffect(() => {
     fetch("http://localhost:3000/merchandisers")
@@ -134,19 +129,35 @@ function App() {
               </>
             }
           ></Route>
-          <Route
-            path="/taskmanager"
-            element={
-              <>
-                <Taskmanager
-                  setCurrentMerchant={setCurrentMerchant}
-                  currentMerchant={currentMerchant}
-                  merchants={merchants}
-                />
-              </>
+
+            <Route path="/login" element={<Login setUser={setUser} user={user} />} />
+
+            <Route path="/register" element={<RegisterForm />} />
+
+            <Route path="/merchant/login" element={<LoginForm setUser={setUser}/>} />
+
+            <Route path="/merchants" element={
+                <>
+                  <MerchantPage setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route>
+
+            <Route path="/orders" element={
+                <>
+                  <Orders setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route>
+
+            <Route path="/taskmanager" element={
+                <>
+                  <Taskmanager orders={orders} setOrders={setOrders} setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                </>
+              }>
+            </Route> 
             }
           ></Route>
-            
         </Routes>
       </div>
     </BrowserRouter>

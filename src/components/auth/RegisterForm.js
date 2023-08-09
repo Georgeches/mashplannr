@@ -79,7 +79,7 @@ const RegisterForm = () => {
       <div className="col-md-12 col-lg-6 login-right">
         <div className="login-header">
           <h3 className="text-center">
-            Welcome to <span className="fw-bold" style={{color: "rgb(0, 119, 255)"}}>mashPlannr</span>
+            Register new <span className="fw-bold" style={{color: "rgb(0, 119, 255)"}}>merchant</span>
           </h3>
         </div>
         <form onSubmit={handleSubmit}>

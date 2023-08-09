@@ -31,3 +31,20 @@ u{
 .fas{
   color:rgb(0, 119, 255);
 }
+
+.select-merchant{
+  margin-bottom: 20px;
+  height: 45px;
+  margin-right: 20px;
+  color: rgb(128, 128, 128);
+  outline: none;
+  cursor: pointer;
+}
+
+.edit-modal{
+  margin-top: 120px;
+}
+
+.modal-body input{
+  margin-bottom: 10px;
+}

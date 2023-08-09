@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LoginForm = ({ onLogin }) => {
+const LoginForm = ({ setUser, user }) => {
   const [id_number, setIdNumber] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -10,36 +10,28 @@ const LoginForm = ({ onLogin }) => {
 
   const handleSubmit = function (e) {
     e.preventDefault();
-    fetch("/login", {
+    fetch("http://localhost:3000/login", {
       method: "POST",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ id_number, password }),
     })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("Failed to login.");
-        }
-      })
-      .then((data) => {
-        // Check the user_type returned from the server
-        if (data.user_type === "admin") {
-          // Redirect to the admin dashboard
-          navigate("/admin/dashboard");
-        } else if (data.user_type === "merchant") {
-          // Redirect to the merchant dashboard
-          navigate("/");
-        } else {
-          // Handle other user types or unexpected responses
-          throw new Error("Unknown user type.");
-        }
-      })
-      .catch((error) => {
-        // console.error("Error:", error);
-      });
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      } else {
+        alert("invalid id number or password")
+      }
+    })
+    .then((data) => {
+      localStorage.setItem("current_user", JSON.stringify(data))
+      navigate('/')
+      window.location.reload()
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
   };
 
   return (

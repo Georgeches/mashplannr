@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { Icon } from "boxicons";
+import { Link } from 'react-router-dom';
 import "./sidebar.css";
 
 const Sidebar = () => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [submenuActive, setSubmenuActive] = useState(false);
+  <Link to="/calendar">Calendar</Link>
 
   const handleSidebarToggle = (e) => {
     e.preventDefault()
@@ -16,6 +18,7 @@ const Sidebar = () => {
     <>
     
       <div className="sidebar" style={{width: submenuActive?"260px":"50px"}}>
+      
         <div className="d-flex align-items-center justify-content-between">
         {submenuActive&&
             <a href="/" className="logo">
@@ -45,20 +48,22 @@ const Sidebar = () => {
                 <a href="/orders"><box-icon type='solid' name='truck' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"230px"}}></box-icon></a><a href="/orders">Orders</a>
                 </li>
 
+             
                 <li className="item d-flex align-center">
-                <a href="/leavemanagement"><box-icon type='solid' name='calendar-check' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/leavemanagement">Leave Management</a>
+                <a href="/taskmanager"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"290px"}}></box-icon></a> <a href="/taskmanager">Order Manager</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/taskmanager"><box-icon type='solid' name='briefcase-alt-2' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"350px"}}></box-icon></a> <a href="/taskmanager">Task Manager</a>
+                <a href="/calendar" ><box-icon type='solid' name='calendar' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"350px"}}></box-icon></a> <a href="/calendar">Calendar</a>
                 </li>
+
 
                 <li className="item d-flex align-center">
                 <a href="/reports"><box-icon type='solid' name='report' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"410px"}}></box-icon></a> <a href="/reports">Reports</a>
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/companyprofile"><box-icon type='solid' name='user-plus' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"470px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
+                <a href="/companyprofile"><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
                 </li>
          </div>
           </ul>

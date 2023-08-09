@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-function Header({ user, handleLogout, merchants, orders, setCurrentMerchant }) {
+function Header({ user, merchants, orders, setCurrentMerchant }) {
 
   const [showSearchCard, setShowCard] = useState(false)
   const [headerSearch, setHeaderSearch] = useState("0")
@@ -15,6 +15,20 @@ function Header({ user, handleLogout, merchants, orders, setCurrentMerchant }) {
     e.preventDefault()
     setCurrentMerchant(merchant)
     nav('/merchants')
+  }
+
+  function handleLogout(e){
+    e.preventDefault()
+    let userConfirm = "Are you sure you want to log out?"
+    if(window.confirm(userConfirm)){
+      localStorage.setItem("current_user", JSON.stringify({}))
+      nav('/login')
+      window.location.reload()
+    }
+    else{
+      console.log('User cancelled the logout.')
+    }
+    
   }
   
   useEffect(()=>{
@@ -52,9 +66,9 @@ function Header({ user, handleLogout, merchants, orders, setCurrentMerchant }) {
                   <form>
                     <input className="form-control" id="header-search" placeholder="Search..." autoComplete="off" onBlur={e=>toggleCard(e)} onFocus={e=>toggleCard(e)} onChange={e=>setHeaderSearch(e.target.value)}/>
                   </form>
-                  <div className="card form-card" style={{display: showSearchCard?"block":"none"}}>
+                  <div className="card form-card" style={{display: showSearchCard?"block":"none", position: "fixed"}}>
                     <ul className="search-results">
-                      {merchants.filter(this_merchant=>this_merchant.name.toLowerCase().includes(headerSearch.toLowerCase())).map(merchant=><li key={merchant.id} className="merchant-result result" onClick={e=>navigateToMerchant(e, merchant)}>{merchant.name}</li>)}
+                      {merchants.filter(this_merchant=>this_merchant.name.toLowerCase().includes(headerSearch.toLowerCase())).map(merchant=><li key={merchant.id} className="merchant-result result" style={{cursor: "pointer"}} onClick={e=>navigateToMerchant(e, merchant)}>{merchant.name}</li>)}
                       {orders.filter(this_order=>this_order.customer_name.toLowerCase().includes(headerSearch.toLowerCase())).map(order=><li key={order.id} className="order-result result">Order from {order.customer_name}</li>)}
                       {orders.filter(this_order=>this_order.customer_name.toLowerCase().includes(headerSearch.toLowerCase())).map(order=><li key={order.id} className="order-result result">{order.customer_name}</li>)}
                     </ul>
@@ -84,8 +98,8 @@ function Header({ user, handleLogout, merchants, orders, setCurrentMerchant }) {
                   </>
                   :
                   <li className="register-btn">
-                    <a href="/logout" className="btn btn-primary log-btn">
-                      <i onClick={handleLogout} className="feather-lock"></i>
+                    <a onClick={e=>handleLogout(e)} href="/login" className="btn btn-primary log-btn">
+                      <i className="feather-lock"></i>
                       Logout
                     </a>
                   </li>

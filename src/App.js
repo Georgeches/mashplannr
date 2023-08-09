@@ -15,20 +15,15 @@ import Taskmanager from "./components/Taskmanager";
 import Nopage from "./components/Nopage";
 
 function App() {
-  const [user, setUser] = useState({});
+
+  if(localStorage.getItem("current_user")===null){
+    localStorage.setItem('current_user', JSON.stringify({}))
+  }
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("current_user")));
   const [merchants, setMerchants] = useState([])
   const [orders, setOrders] = useState([])
   const [currentMerchant, setCurrentMerchant] = useState({})
-  console.log(currentMerchant);
-
-  useEffect(() => {
-    // auto-login
-    fetch("/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => setUser(user));
-      }
-    });
-  }, []);
 
   useEffect(()=>{
     fetch("http://localhost:3000/merchandisers")
@@ -69,11 +64,11 @@ function App() {
             }>
             </Route>
 
-            <Route path="/login" element={<Login onLogin={setUser} />} />
+            <Route path="/login" element={<Login setUser={setUser} user={user} />} />
 
             <Route path="/register" element={<RegisterForm />} />
 
-            <Route path="/merchant/login" element={<LoginForm />} />
+            <Route path="/merchant/login" element={<LoginForm setUser={setUser}/>} />
 
             <Route path="/merchants" element={
                 <>
@@ -87,11 +82,11 @@ function App() {
                   <Orders setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
                 </>
               }>
-            </Route>  
+            </Route>
 
             <Route path="/taskmanager" element={
                 <>
-                  <Taskmanager orders={orders} setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
+                  <Taskmanager orders={orders} setOrders={setOrders} setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
                 </>
               }>
             </Route> 

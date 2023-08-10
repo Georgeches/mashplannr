@@ -1,0 +1,50 @@
+.task-planner-page{
+  margin-top: 120px;
+}
+#list1 .form-control {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+#list1 .form-control:focus {
+  border-color: transparent;
+  box-shadow: none;
+}
+#list1 .select-input.form-control[readonly]:not([disabled]) {
+  background-color: #fbfbfb;
+}
+.btn{
+  background-color:rgb(0, 119, 255);
+  border-color: rgb(0, 119, 255);
+}
+
+.btn:hover{
+  background-color: transparent;
+  color: rgb(0, 119, 255);
+  border-color: rgb(0, 119, 255);
+
+}
+
+u{
+  color:rgb(0, 119, 255);
+}
+
+.fas{
+  color:rgb(0, 119, 255);
+}
+
+.select-merchant{
+  margin-bottom: 20px;
+  height: 45px;
+  margin-right: 20px;
+  color: rgb(128, 128, 128);
+  outline: none;
+  cursor: pointer;
+}
+
+.edit-modal{
+  margin-top: 120px;
+}
+
+.modal-body input{
+  margin-bottom: 10px;
+}

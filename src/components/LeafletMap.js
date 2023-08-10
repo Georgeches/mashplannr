@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+
 import "leaflet/dist/leaflet.css";
 
 const LeafletMap = ({ currentMerchant }) => {
@@ -45,21 +45,6 @@ const LeafletMap = ({ currentMerchant }) => {
           ></iframe>
         </div>
       </div>
-
-      {/* <MapContainer
-        // center={[[currentLocation.lat, currentLocation.lng]]}
-        zoom={13}
-        style={mapStyle}
-        scrollWheelZoom={false}
-      >
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        />
-        <Marker position={[currentLocation.lat, currentLocation.lng]}>
-          <Popup>Current Location for {currentMerchant?.name}</Popup>
-        </Marker>
-      </MapContainer> */}
     </div>
   );
 };

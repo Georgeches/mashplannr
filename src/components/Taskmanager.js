@@ -1,14 +1,17 @@
 import  React, { useEffect } from 'react';
 import { useState } from 'react';
+import DateTimePicker from 'react-datetime-picker'
 import './taskmanager.css'
 
-const Taskmanager = ({orders, merchants, setOrders}) => {
+const Taskmanager = ({orders, merchants, setOrders, session}) => {
 
   const [customer_name, setCustomer] = useState("")
   const [location, setLocation] = useState("")
-  const [sale, setSale] = useState(0)
+  const [order_sale, setSale] = useState(0)
   const [products_ordered, setProducts] = useState("")
-  const [merchandiser_id, setMerchantId] = useState(0)
+  const [order_merchandiser_id, setMerchantId] = useState(0)
+  const [order_date, setDate] = useState("")
+  console.log(typeof order_sale)
 
   const [orderToEdit, setOrderEdit] = useState({})
 
@@ -35,29 +38,63 @@ const Taskmanager = ({orders, merchants, setOrders}) => {
   const [showMerchantInput, setShowMerchant] = useState(false)
   const [showProductsInput, setShowProducts] = useState(false)
 
-  console.log(orderToEdit)
+  async function createCalendarEvent(){
+    const startDateTime = new Date(order_date);
+    startDateTime.setHours(9, 0, 0);
+    
+    const endDateTime = new Date(order_date);
+    endDateTime.setHours(12, 0, 0);
+
+    const event = {
+      'summary': customer_name,
+      'description': `Deliver ${products_ordered} to ${customer_name}`,
+      'start': {
+        'dateTime': startDateTime.toISOString(),
+        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
+      },
+      end: {
+        'dateTime': endDateTime.toISOString(),
+        'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone,
+      }
+    }
+
+    await fetch("https://www.googleapis.com/calendar/v3/calendars/primary/events",{
+      method: "POST",
+      headers: {
+        'Authorization':"Bearer "+ session.provider_token
+      },
+      body: JSON.stringify(event)
+    })
+    .then(data=>{
+      return data.json()
+    })
+    .then( data=>console.log(data))
+  }
 
   async function createOrder(e){
     e.preventDefault();
+    let sale = parseInt(order_sale)
+    let merchandiser_id = order_merchandiser_id!==0?parseInt(order_merchandiser_id):merchants[0]?.id
+    const date = new Date(order_date).toISOString().split('T')[0];
+    console.log(sale + ": " + typeof sale)
 
     try {
-      const csrfResponse = await fetch("http://localhost:3000/csrf_token");
-      const csrfData = await csrfResponse.json();
-      const csrfToken = csrfData.csrfToken;
-  
       const orderResponse = await fetch("http://localhost:3000/orders", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": csrfToken,
+          "Content-Type": "application/json"
         },
-        body: JSON.stringify({ customer_name, products_ordered, merchandiser_id, location, sale}),
+        body: JSON.stringify({ customer_name, products_ordered, merchandiser_id, location, sale, date}),
       });
   
       if (orderResponse.ok) {
         const orderData = await orderResponse.json();
+        createCalendarEvent()
         setOrders([...orders, orderData])
       } else {
+        const orderData = await orderResponse.json()
+        console.log(orderData.error)
+        console.log(merchants[0]?.id)
         alert("Please ensure you fill all the fields");
       }
     } catch (error) {
@@ -75,8 +112,7 @@ const Taskmanager = ({orders, merchants, setOrders}) => {
       })
       .then(res=>{
         if(res.ok){
-          setOrders(orders.filter(this_order=>this_order?.id!==order?.id))
-          console.log("deleted")
+          window.location.reload()
         }
         else{
           alert("There was an error when attempting to delete order. Please try again later")
@@ -139,9 +175,14 @@ const Taskmanager = ({orders, merchants, setOrders}) => {
                         placeholder="Customer Location" onChange={e=>setLocation(e.target.value)}/>
                       <input type="number" className="form-control form-control-lg" id="exampleFormControlInput1"
                       placeholder="Sale" onChange={e=>setSale(e.target.value)}/>
+                      <input
+                        type="date"
+                        className="form-control form-control-lg"
+                        onChange={(e) => setDate(e.target.value)}
+                      />
                       <select className="form-select select-merchant" onChange={e=>setMerchantId(e.target.value)}>
                         {merchants.map(merchant=>
-                          <option value={merchant.id}>{merchant.name}</option>
+                          <option value={merchant?.id}>{merchant?.name}</option>
                         )}
                       </select>
                       

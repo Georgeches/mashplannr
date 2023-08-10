@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
-function Header({ user, merchants, orders, setCurrentMerchant }) {
+function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
 
   const [showSearchCard, setShowCard] = useState(false)
   const [headerSearch, setHeaderSearch] = useState("0")
@@ -15,6 +15,12 @@ function Header({ user, merchants, orders, setCurrentMerchant }) {
     e.preventDefault()
     setCurrentMerchant(merchant)
     nav('/merchants')
+  }
+
+  async function googleSignOut(e){
+    e.preventDefault()
+    await supabase.auth.signOut()
+    nav('/login')
   }
 
   function handleLogout(e){
@@ -98,7 +104,7 @@ function Header({ user, merchants, orders, setCurrentMerchant }) {
                   </>
                   :
                   <li className="register-btn">
-                    <a onClick={e=>handleLogout(e)} href="/login" className="btn btn-primary log-btn">
+                    <a onClick={e=>googleSignOut(e)} href="/login" className="btn btn-primary log-btn">
                       <i className="feather-lock"></i>
                       Logout
                     </a>

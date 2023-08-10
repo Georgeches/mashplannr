@@ -1,0 +1,42 @@
+.merchant-profile{
+    flex-wrap: wrap;
+}
+
+.profile-img{
+    height: 200px;
+    width: 200px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+}
+
+.profile-img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+}
+
+.merchant-details{
+    margin-top: 50px;
+}
+
+.merchant-detail{
+    border: 1px solid rgb(228, 228, 228);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 35vh;
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+
+.merchant-detail p:first-child{
+    font-size: 16px;
+    color: black;
+    width: 200px;
+}

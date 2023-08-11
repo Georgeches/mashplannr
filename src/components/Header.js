@@ -104,7 +104,7 @@ function Header({ user, merchants, orders, setCurrentMerchant, supabase}) {
                   </>
                   :
                   <li className="register-btn">
-                    <a onClick={e=>googleSignOut(e)} href="/login" className="btn btn-primary log-btn">
+                    <a onClick={e=>googleSignOut(e)} href="/" className="btn btn-primary log-btn">
                       <i className="feather-lock"></i>
                       Logout
                     </a>

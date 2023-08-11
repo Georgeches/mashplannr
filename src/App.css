@@ -43,6 +43,15 @@ nav{
 .form-card{
   width: 326px;
 }
+
+.btn-google{
+  height: 50px;
+  width: 100%; 
+  background-color: transparent;
+  border: 2px solid rgb(0, 119, 255);
+  outline: none;
+  color: rgb(0, 119, 255);
+}
 @media only screen and (min-width: 800px){
   .main-nav{
     margin-top: 5px !important;

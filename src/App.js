@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
+import {useSession, useSupabaseClient} from '@supabase/auth-helpers-react'
 
 //components
 import Home from "./components/Home";
@@ -17,16 +18,13 @@ import Calendar from "./components/Calender";
 
 
 function App() {
-
-  if(localStorage.getItem("current_user")===null){
-    localStorage.setItem('current_user', JSON.stringify({}))
-  }
-
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("current_user")));
+  const session = useSession()
+  const supabase = useSupabaseClient()
   const [merchants, setMerchants] = useState([])
   const [orders, setOrders] = useState([])
   const [currentMerchant, setCurrentMerchant] = useState({})
-
+  const [admins, setAdmins] = useState([])
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     fetch("http://localhost:3000/merchandisers")
@@ -40,23 +38,43 @@ function App() {
       .then((data) => setOrders(data));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:3000/admins")
+      .then((res) => res.json())
+      .then((data) => setAdmins(data));
+  }, []);
+
+
   function handleLogout() {
     setUser({});
   }
 
-  console.log(user);
+  console.log(session?.user.email)
+
+  useEffect(()=>{
+    if(session){
+      setUser(admins.find(admin=>admin?.email===session.user.email))
+    }
+  }, [session, admins])
+
+  console.log(session)
+  
 
   return (
     <BrowserRouter>
+      {session?
+      <>
       <Header
         user={user}
         setCurrentMerchant={setCurrentMerchant}
         onLogout={handleLogout}
         merchants={merchants}
         orders={orders}
+        session={session}
+        supabase={supabase}
       />
       <div className="app d-flex justify-content-between">
-        <Sidebar />
+        <Sidebar session={session} supabase={supabase}/>
         
 
         <Routes>
@@ -88,7 +106,7 @@ function App() {
 
           <Route path="/merchant/login" element={<LoginForm />} />
 
-          <Route path="/calendar" component={Calendar} />
+          <Route path="/calendar" element={<Calendar/>} />
 
           <Route
             path="/merchants"
@@ -98,6 +116,7 @@ function App() {
                   setCurrentMerchant={setCurrentMerchant}
                   currentMerchant={currentMerchant}
                   merchants={merchants}
+                  orders={orders}
                 />
               </>
             }
@@ -109,8 +128,8 @@ function App() {
               <>
                 <Orders
                   setCurrentMerchant={setCurrentMerchant}
-                  currentMerchant={currentMerchant}
                   merchants={merchants}
+                  currentMerchant={"none"}
                 />
               </>
             }
@@ -122,9 +141,11 @@ function App() {
               <>
                 <Taskmanager
                   orders={orders}
+                  setOrders={setOrders}
                   setCurrentMerchant={setCurrentMerchant}
                   currentMerchant={currentMerchant}
                   merchants={merchants}
+                  session={session}
                 />
               </>
             }
@@ -136,30 +157,20 @@ function App() {
 
             <Route path="/merchant/login" element={<LoginForm setUser={setUser}/>} />
 
-            <Route path="/merchants" element={
-                <>
-                  <MerchantPage setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
-                </>
-              }>
-            </Route>
-
             <Route path="/orders" element={
                 <>
                   <Orders setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
                 </>
               }>
             </Route>
-
-            <Route path="/taskmanager" element={
-                <>
-                  <Taskmanager orders={orders} setOrders={setOrders} setCurrentMerchant={setCurrentMerchant} currentMerchant={currentMerchant} merchants={merchants}/>
-                </>
-              }>
-            </Route> 
-            }
-          ></Route>
         </Routes>
       </div>
+      </>
+      :
+      <Routes>
+        <Route path="/" element={<Login setUser={setUser} user={user} />} />
+      </Routes>
+      }
     </BrowserRouter>
   );
 }

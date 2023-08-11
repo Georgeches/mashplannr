@@ -1,12 +1,35 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {useSession, useSupabaseClient} from '@supabase/auth-helpers-react'
 
-const LoginForm = ({ setUser, user }) => {
+const LoginForm = ({ setUser, user  }) => {
   const [id_number, setIdNumber] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const session = useSession()
+  const supabase = useSupabaseClient()
+
   let screenWidth = window.screen.width
+
+  async function googleSignIn(e){
+    e.preventDefault()
+    const {error} = await supabase.auth.signInWithOAuth({
+      provider:'google',
+      options: {
+        scopes: 'https://www.googleapis.com/auth/calendar'
+      }
+    })
+    if(error){
+      alert("Error logging in")
+      console.log(error)
+    }
+  }
+
+  async function signOut(e){
+    e.preventDefault()
+    await supabase.auth.signOut()
+  }
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -35,10 +58,16 @@ const LoginForm = ({ setUser, user }) => {
   };
 
   return (
+    <>
+    
     <div className="justify-content-center login-div" style={{ minHeight: "100vh", display: "flex", minWidth:`${screenWidth}px`}}>
       <div className="container-fluid d-flex justify-content-center align-items-center">
+        
         <div className="login-right">
+        
+
           <div className="login-header">
+          
             <h3>
               Login <span></span>
             </h3>
@@ -86,9 +115,11 @@ const LoginForm = ({ setUser, user }) => {
             Don't have an account? &nbsp;
             <Link to="/register">Sign Up</Link>
           </p>
+          <button className="btn-google mt-4" onClick={e=>googleSignIn(e)}>Continue with google</button>
         </div>
       </div>
     </div>
+    </>
   );
 };
 

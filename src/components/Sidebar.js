@@ -3,7 +3,7 @@ import { Icon } from "boxicons";
 import { Link } from 'react-router-dom';
 import "./sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({supabase}) => {
   const [isSidebarOpen, setSidebarOpen] = useState(true);
   const [submenuActive, setSubmenuActive] = useState(false);
   <Link to="/calendar">Calendar</Link>
@@ -13,6 +13,11 @@ const Sidebar = () => {
     setSubmenuActive(!submenuActive);
     setSidebarOpen((prevOpen) => !prevOpen);
   };
+
+  async function googleSignOut(e){
+    e.preventDefault()
+    await supabase.auth.signOut()
+  }
 
   return (
     <>
@@ -63,7 +68,7 @@ const Sidebar = () => {
                 </li>
 
                 <li className="item d-flex align-center">
-                <a href="/companyprofile"><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/companyprofile">Profile</a>
+                <a href="/login" onClick={e=>googleSignOut(e)}><box-icon type='solid' name='exit' style={{position: !submenuActive&&"fixed", left: !submenuActive&&"10px", top: !submenuActive&&"471px"}}></box-icon></a> <a href="/login">Log out</a>
                 </li>
          </div>
           </ul>

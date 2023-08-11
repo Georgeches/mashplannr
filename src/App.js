@@ -106,7 +106,7 @@ function App() {
 
           <Route path="/merchant/login" element={<LoginForm />} />
 
-          <Route path="/calendar" component={Calendar} />
+          <Route path="/calendar" element={<Calendar/>} />
 
           <Route
             path="/merchants"

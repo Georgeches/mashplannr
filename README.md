@@ -68,3 +68,48 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+Rails Backend
+Navigate to the Rails backend directory:
+Install Ruby gems:
+
+Copy code
+bundle install
+Set up the database:
+
+rails db:create
+rails db:migrate
+
+Start the Rails server:
+
+rails server -p 3000
+
+
+PostgreSQL Setup (Ubuntu)
+Install PostgreSQL:
+
+sql
+
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+Start and enable PostgreSQL:
+
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+Create a PostgreSQL user and database:
+
+
+sudo -u postgres createuser --interactive
+sudo -u postgres createdb your-database-name
+
+PostgreSQL Setup (Windows)
+Download and install PostgreSQL from: https://www.postgresql.org/download/windows/
+
+During installation, set the superuser password.
+
+Launch the "pgAdmin" tool from the Start Menu.
+
+In pgAdmin, create a new user and database.
+
+Contributing
+Feel free to contribute to this project by opening issues or pull requests. We appreciate your input!
